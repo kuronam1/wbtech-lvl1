@@ -6,8 +6,13 @@ import (
 	"time"
 )
 
-func DeleteElem(i int, slice []int) []int {
+func DeleteElemV1(i int, slice []int) []int {
 	return append(slice[0:i], slice[i+1:]...)
+}
+
+func DeleteElemV2(i int, slice []int) []int {
+	slice[i] = slice[len(slice)-1]
+	return slice[:len(slice)-1]
 }
 
 func main() {
@@ -20,9 +25,11 @@ func main() {
 		fmt.Println("error while scanning")
 		return
 	}
-	newSlice := DeleteElem(i, slice)
+	newSlice := DeleteElemV1(i, slice)
+	fmt.Printf("V1 new slice: %v\n", newSlice)
 
-	fmt.Printf("new slice: %v", newSlice)
+	newSlice = DeleteElemV2(i, slice)
+	fmt.Printf("V2 new slice: %v\n", newSlice)
 }
 
 func generateSlice(size int) []int {
