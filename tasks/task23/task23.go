@@ -6,10 +6,12 @@ import (
 	"time"
 )
 
+// DeleteElemV1 .. способ через "вырезание" append'ом
 func DeleteElemV1(i int, slice []int) []int {
 	return append(slice[0:i], slice[i+1:]...)
 }
 
+// DeleteElemV2 .. способ через замену нужного елемента послежним и создания нового среза без последжнего елемента
 func DeleteElemV2(i int, slice []int) []int {
 	slice[i] = slice[len(slice)-1]
 	return slice[:len(slice)-1]

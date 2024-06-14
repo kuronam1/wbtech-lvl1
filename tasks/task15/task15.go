@@ -7,8 +7,8 @@ import (
 
 var justString string
 
-func createHugeString(size int) string {
-	result := make([]rune, size)
+func createHugeString(i int) string {
+	result := make([]rune, i)
 	randomizer := New()
 	minimum := 97
 	maximum := 122

@@ -2,11 +2,13 @@ package main
 
 import (
 	"fmt"
+	"slices"
 )
 
 var str = "царьпушка"
 
 func V1() {
+	defer fmt.Println()
 	for _, val := range str {
 		defer fmt.Print(string(val))
 	}
@@ -22,7 +24,14 @@ func V2() string {
 	return string(result)
 }
 
+func V3() string {
+	runes := []rune(str)
+	slices.Reverse(runes)
+	return string(runes)
+}
+
 func main() {
-	fmt.Println(V2())
 	V1()
+	fmt.Println(V2())
+	fmt.Println(V3())
 }

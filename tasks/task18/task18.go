@@ -10,11 +10,6 @@ type counter struct {
 	value int
 }
 
-func main() {
-	V1(1000)
-	V2(1000)
-}
-
 func V2(amount int) {
 	type counterV2 struct {
 		counter int64
@@ -27,7 +22,7 @@ func V2(amount int) {
 	for i := 0; i < amount; i++ {
 		go func() {
 			defer wg.Done()
-			atomic.AddInt64(&cnt.counter, 1)
+			atomic.AddInt64(&cnt.counter, 1) // атомики безопасно использовать в конкурентной среде
 		}()
 	}
 	wg.Wait()
@@ -53,4 +48,9 @@ func V1(amount int) {
 	wg.Wait()
 
 	fmt.Println(cnt.value)
+}
+
+func main() {
+	V1(1000)
+	V2(1000)
 }

@@ -8,21 +8,25 @@ import (
 var a string = "24000000000000000000"
 var b string = "23000000000000000000"
 
+// division .. деление
 func division(num1, num2 *big.Int) *big.Int {
 	result := new(big.Int)
 	return result.Div(num1, num2)
 }
 
+// multiplication .. умножение
 func multiplication(num1, num2 *big.Int) *big.Int {
 	result := new(big.Int)
 	return result.Mul(num1, num2)
 }
 
+// addition .. сложение
 func addition(num1, num2 *big.Int) *big.Int {
 	result := new(big.Int)
 	return result.Add(num1, num2)
 }
 
+// subtraction .. вычитание
 func subtraction(num1, num2 *big.Int) *big.Int {
 	result := new(big.Int)
 	return result.Sub(num1, num2)
