@@ -36,7 +36,13 @@ func determineTypeV2(value interface{}) {
 		fmt.Println("string") //или реализовать какой-либо метод связанный с этим типом данных
 	case bool:
 		fmt.Println("bool")
+	case chan int: // тип канала может быть любым.
+		fmt.Println("chan int")
+	case chan string:
+		fmt.Println("chan string")
+	case chan bool:
+		fmt.Println("chan bool")
 	default:
-		fmt.Println("channel")
+		fmt.Println("unknown type")
 	}
 }
