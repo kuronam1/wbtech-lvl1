@@ -14,7 +14,18 @@ func main() {
 }
 
 func determineType(value interface{}) {
-	fmt.Println(reflect.TypeOf(value))
+	switch reflect.TypeOf(value).Kind() {
+	case reflect.Chan:
+		fmt.Println("channel")
+	case reflect.Int:
+		fmt.Println("int")
+	case reflect.String:
+		fmt.Println("string")
+	case reflect.Bool:
+		fmt.Println("bool")
+	default:
+		fmt.Println("unknown type")
+	}
 }
 
 func determineTypeV2(value interface{}) {
