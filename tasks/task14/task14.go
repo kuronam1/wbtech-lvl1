@@ -1,18 +1,26 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"reflect"
+)
 
 func main() {
 	determineType(14)
 	determineType("value")
 	determineType(false)
-	determineType(make(chan int))
+	determineType(make(chan string))
+	determineTypeV2(make(chan int))
 }
 
 func determineType(value interface{}) {
+	fmt.Println(reflect.TypeOf(value))
+}
+
+func determineTypeV2(value interface{}) {
 	switch value.(type) {
 	case int:
-		fmt.Println("int") //после опреления мы можем сохранить флаг (в случае, если это структура)
+		fmt.Println("int") //после определения мы можем сохранить флаг (в случае, если это структура)
 	case string:
 		fmt.Println("string") //или реализовать какой-либо метод связанный с этим типом данных
 	case bool:
