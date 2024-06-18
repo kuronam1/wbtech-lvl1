@@ -10,6 +10,8 @@ var numbers = []int{2, 4, 6, 8, 10}
 func V1() {
 	wg := sync.WaitGroup{}
 	wg.Add(len(numbers))
+
+	defer fmt.Println()
 	for _, num := range numbers {
 		go func(num int, wg *sync.WaitGroup) {
 			defer wg.Done()
@@ -20,18 +22,16 @@ func V1() {
 }
 
 func V2() {
-	mu := sync.Mutex{}
 	wg := sync.WaitGroup{}
 	wg.Add(len(numbers))
 
 	for idx := range numbers {
-		go func(num *int, wg *sync.WaitGroup, mu *sync.Mutex) {
+		//Проблема решена в Go 1.22, передаю в параметры функции значение из-за warning от IDE
+		go func(slice []int, i int) {
 			defer wg.Done()
-			mu.Lock()
-			defer mu.Unlock()
 
-			*num *= *num
-		}(&numbers[idx], &wg, &mu)
+			slice[i] *= slice[i]
+		}(numbers, idx)
 	}
 	wg.Wait()
 
